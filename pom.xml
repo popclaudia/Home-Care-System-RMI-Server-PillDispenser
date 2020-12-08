@@ -93,16 +93,11 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
         </dependency>
-<<<<<<< HEAD
-
         <dependency>
             <groupId>com.caucho</groupId>
             <artifactId>hessian</artifactId>
             <version>4.0.51</version>
         </dependency>
-
-=======
->>>>>>> 2dafcfb9a2ea0c93d523ff99a18f22b03a56f1c8
 
     </dependencies>
 
