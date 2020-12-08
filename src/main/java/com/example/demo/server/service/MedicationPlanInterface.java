@@ -1,11 +1,12 @@
 package com.example.demo.server.service;
 
+import java.rmi.Remote;
 import java.util.Date;
 import java.util.List;
 
-public interface MedicationPlanInterface {
+public interface MedicationPlanInterface{
 
-    void hello(String s);
+    public void hello(String s);
 
     List<String> getPlan(Integer id);
     List<String> getMedication(Integer id);
