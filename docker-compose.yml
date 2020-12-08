@@ -3,6 +3,7 @@ version: '3'
 services:
 
   rpc:
+<<<<<<< HEAD
     image: rmi-image
     ports:
        - "8080:8080"
@@ -10,3 +11,10 @@ services:
        - "8080"
 
 
+=======
+    image: image
+    ports:
+       - "1099:1099"
+  export:
+       - "1089"
+>>>>>>> 2dafcfb9a2ea0c93d523ff99a18f22b03a56f1c8
