@@ -1,0 +1,36 @@
+stages:
+  - build
+  - checkstyle
+  - deploy
+
+build:
+  stage: build
+  image: maven:3.3.9-jdk-8
+  script:
+    - mvn clean package
+
+
+checkstyle:
+    stage: checkstyle
+    image: maven:3.3.9-jdk-8
+    script:
+    - echo "Checkstyle DEMO app"
+    - mvn checkstyle:check
+
+variables:
+    DB_IP: ec2-54-246-67-245.eu-west-1.compute.amazonaws.com
+    DB_PORT: 5432
+    DB_USER: mavymjmkzqqrrz
+    DB_PASSWORD: 3a64f0670d373fa7b1a4dd90a0a5fbc51ee84acfadedebd45effcbb264edde13b
+    DB_DBNAME: dcurvudgns8pm3
+    
+deploy:
+  stage: deploy
+  image: ruby:2.4
+  script:
+    - apt-get update -qy
+    - apt-get install -y ruby-dev
+    - gem install dpl
+    - dpl --provider=heroku --app=spring-assignment-1 --api-key=$HEROKU_API_KEY
+  only:
+    - production
