@@ -41,6 +41,7 @@ public class MedicationPlanImpl implements MedicationPlanInterface {
 
         List<MedicationPlan> medicationPlansList = medicationPlanRepository.findByPatient(id);
         List<String> meds= new ArrayList<String>();
+        List<String> meds2= new ArrayList<String>();
         for (MedicationPlan p : medicationPlansList) {
             String start = p.getTreatment_period().substring(0,10);
             String end = p.getTreatment_period().substring(13,p.getTreatment_period().length());
@@ -58,6 +59,7 @@ public class MedicationPlanImpl implements MedicationPlanInterface {
                     String[] parts = p.getIntervals().split(" ");
                     String med="";
                     for(String s: parts) {
+                       // System.out.println(s);
                         if(s.length()>0) {
                             if (s.charAt(0) < '0' || s.charAt(0) > '9') {
                                 if (!med.equals(""))
@@ -71,9 +73,6 @@ public class MedicationPlanImpl implements MedicationPlanInterface {
                         }
                     }
                     meds.add(med);
-                    for(String g: meds){
-                        System.out.println(g);
-                    }
                 }
 
             }catch(Exception e){
@@ -82,7 +81,23 @@ public class MedicationPlanImpl implements MedicationPlanInterface {
             }
         }
 
-        return meds;
+        for(String g: meds){
+            String[] parts2 = g.split("@");
+            if(parts2.length>2){
+                for(int i=1; i<parts2.length; i++){
+                    meds2.add(parts2[0]+"@"+parts2[i].replace(",", ""));
+
+                }
+            }else{
+                meds2.add(g);
+            }
+
+        }
+
+        for(String g: meds2) {
+            System.out.println(g);
+        }
+        return meds2;
     }
 
     @Override
