@@ -72,7 +72,7 @@ public class MedicationPlanImpl implements MedicationPlanInterface {
                             }
                         }
                     }
-                    meds.add(med);
+                    meds.addAll(Arrays.asList(med.split("\n")));
                 }
 
             }catch(Exception e){
